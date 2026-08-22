@@ -149,11 +149,48 @@ function initSphere(canvasId){
 
     // Background gradient
     const grad=ctx.createRadialGradient(centerX,centerY,0,centerX,centerY,Math.max(width,height));
-    grad.addColorStop(0,'#0F3D2E');
-    grad.addColorStop(0.5,'#0A2B20');
-    grad.addColorStop(1,'#051a12');
+    grad.addColorStop(0,'#1A6670');
+    grad.addColorStop(0.5,'#123B43');
+    grad.addColorStop(1,'#061B22');
     ctx.fillStyle=grad;
     ctx.fillRect(0,0,width,height);
+
+    // Draw animated orbital routes to suggest a live global network.
+    const routeCenterX=width*0.72;
+    const routeCenterY=height*0.5;
+    const routeRadius=Math.min(width,height)*0.34;
+    for(let routeIndex=0;routeIndex<5;routeIndex++){
+      const routeAngle=routeIndex*1.2+time*0.08;
+      const routeStartX=routeCenterX+Math.cos(routeAngle)*routeRadius;
+      const routeStartY=routeCenterY+Math.sin(routeAngle)*routeRadius*0.42;
+      const routeEndX=routeCenterX+Math.cos(routeAngle+1.7)*routeRadius;
+      const routeEndY=routeCenterY+Math.sin(routeAngle+1.7)*routeRadius*0.42;
+      const routeLift=routeRadius*(0.28+routeIndex*0.025);
+      const routeProgress=(time*0.16+routeIndex*0.2)%1;
+      const signalX=routeStartX+(routeEndX-routeStartX)*routeProgress;
+      const signalY=routeStartY+(routeEndY-routeStartY)*routeProgress-routeLift*Math.sin(Math.PI*routeProgress);
+
+      ctx.beginPath();
+      ctx.moveTo(routeStartX,routeStartY);
+      ctx.quadraticCurveTo(routeCenterX,routeCenterY-routeLift,routeEndX,routeEndY);
+      ctx.strokeStyle='rgba(108,218,195,0.14)';
+      ctx.lineWidth=1;
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(signalX,signalY,2.2+Math.sin(time*4+routeIndex)*0.8,0,Math.PI*2);
+      ctx.fillStyle='rgba(242,185,153,0.9)';
+      ctx.shadowColor='rgba(217,108,74,0.8)';
+      ctx.shadowBlur=12;
+      ctx.fill();
+      ctx.shadowBlur=0;
+    }
+
+    ctx.beginPath();
+    ctx.ellipse(routeCenterX,routeCenterY,routeRadius*1.12,routeRadius*0.34,rotationY*0.2,0,Math.PI*2);
+    ctx.strokeStyle='rgba(185,236,220,0.16)';
+    ctx.lineWidth=1;
+    ctx.stroke();
 
     // Rotate and project all particles
     for(let i=0;i<particles.length;i++){
@@ -182,7 +219,7 @@ function initSphere(canvasId){
           ctx.beginPath();
           ctx.moveTo(p1.sx,p1.sy);
           ctx.lineTo(p2.sx,p2.sy);
-          ctx.strokeStyle='rgba(176,141,87,'+opacity+')';
+          ctx.strokeStyle='rgba(229,138,104,'+opacity+')';
           ctx.lineWidth=0.6*p1.scale;
           ctx.stroke();
         }
@@ -210,23 +247,23 @@ function initSphere(canvasId){
       if(p.isBig||glow>0.1){
         ctx.beginPath();
         ctx.arc(p.sx,p.sy,r*(p.isBig?6:4),0,Math.PI*2);
-        ctx.fillStyle='rgba(176,141,87,'+(0.06+glow*0.15)+')';
+        ctx.fillStyle='rgba(229,138,104,'+(0.06+glow*0.15)+')';
         ctx.fill();
       }
 
       // Middle glow
       ctx.beginPath();
       ctx.arc(p.sx,p.sy,r*2.5,0,Math.PI*2);
-      ctx.fillStyle='rgba(200,180,140,'+(0.1+glow*0.2)+')';
+      ctx.fillStyle='rgba(185,236,220,'+(0.1+glow*0.2)+')';
       ctx.fill();
 
       // Core dot
       ctx.beginPath();
       ctx.arc(p.sx,p.sy,r,0,Math.PI*2);
       if(p.isBig){
-        ctx.fillStyle='rgba(255,245,220,'+Math.min(1,alpha+glow)+')';
+        ctx.fillStyle='rgba(255,241,229,'+Math.min(1,alpha+glow)+')';
       }else{
-        ctx.fillStyle='rgba(220,210,190,'+Math.min(1,alpha*0.8+glow*0.6)+')';
+        ctx.fillStyle='rgba(211,235,226,'+Math.min(1,alpha*0.8+glow*0.6)+')';
       }
       ctx.fill();
 
@@ -249,7 +286,7 @@ function initSphere(canvasId){
       const aR=0.8+0.5*Math.sin(time*2+i);
       ctx.beginPath();
       ctx.arc(ax,ay,aR,0,Math.PI*2);
-      ctx.fillStyle='rgba(176,141,87,0.12)';
+      ctx.fillStyle='rgba(229,138,104,0.12)';
       ctx.fill();
     }
 
