@@ -3,141 +3,109 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>出海洞察 — 陈桥咨询</title>
-<meta name="description" content="陈桥咨询出海洞察文章，基于真实案例的制造业出海策略、品牌建设、渠道运营实战知识。">
-<link rel="canonical" href="https://chenbridge.com/insights.html">
-<meta property="og:title" content="出海洞察 — 陈桥咨询">
-<meta property="og:description" content="制造业出海的实战知识，基于真实案例的行业分析与策略建议。">
+<title>洞察 — 陈桥咨询 ChenBridge Studio</title>
+<meta name="description" content="陈桥咨询分享制造企业海外增长的实用洞察：官网建设、LinkedIn营销、SEO优化、客户开发等出海知识。">
+<link rel="canonical" href="https://chenbridge.com/">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
-<style>
-.page-hero { 
-  background: var(--green); 
-  padding: 160px 40px 80px; 
-  text-align:center; 
-  position:relative;
-  overflow:hidden;
-}
-.page-hero::before {
-  content:''; position:absolute; top:0; left:0; right:0; bottom:0;
-  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-}
-.page-hero-content { position:relative; z-index:1; max-width: 800px; margin:0 auto; }
-.page-hero h1 { font-size: 42px; font-weight: 700; color: #fff; margin-bottom: 16px; }
-.page-hero p { font-size: 18px; color: rgba(255,255,255,0.7); }
-.insights-page { padding: 100px 40px; background: var(--cream); }
-</style>
 </head>
-<body>
-<!-- ===== 全屏Logo开场动画 ===== -->
-<div class="splash-screen" id="splash">
-  <picture>
-    <source srcset="images/logo-chenbridge.webp" type="image/webp">
-    <img src="images/logo-chenbridge.jpg" alt="陈桥咨询" class="splash-logo" id="splash-logo">
-  </picture>
-  <div class="splash-line"></div>
-  <p class="splash-text">帮助中国制造企业走向全球市场</p>
-</div>
-
-<!-- ===== 顶部导航 ===== -->
-<header class="header scrolled" id="header">
+<body><!-- HEADER -->
+<header class="header" id="header">
   <div class="header-inner">
     <a href="index.html" class="logo">
-      <picture>
-        <source srcset="images/logo-chenbridge.webp" type="image/webp">
-        <img src="images/logo-chenbridge.jpg" alt="陈桥咨询">
-      </picture>
-      <div class="logo-text">陈桥咨询<span>CHENBRIDGE STUDIO</span></div>
+      <img src="images/logo-chenbridge.jpg" alt="陈桥咨询">
+      <div class="logo-text">
+        陈桥咨询
+        <span>CHENBRIDGE STUDIO</span>
+      </div>
     </a>
-    <nav class="nav">
-      <a href="index.html">首页</a>
-      <a href="services.html">服务</a>
-      <a href="about.html">关于</a>
-      <a href="resources.html">资源</a>
-      <a href="cases.html">案例</a>
+    <nav class="nav" id="main-nav">
+      <a href="index.html">首页</a><a href="services.html">服务</a><a href="about.html">关于</a><a href="insights.html" class="active">洞察</a><a href="resources.html">资源</a><a href="cases.html">案例</a>
     </nav>
-    <a href="contact.html" class="btn-primary btn-small"><span>获取方案</span></a>
+    <a href="contact.html" class="btn-primary btn-small" style="margin-left:20px;">获取方案</a>
+    <button class="mobile-toggle" id="mobile-toggle" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
+<!-- PAGE HERO -->
 <section class="page-hero">
+  <canvas class="page-hero-canvas" id="hero-canvas"></canvas>
   <div class="page-hero-content">
-    <span class="section-label" style="color:var(--gold); margin-bottom:16px; display:inline-block;">出海洞察</span>
-    <h1>制造业出海实战知识</h1>
-    <p>基于真实案例的行业分析与策略建议</p>
+    <h1>制造企业海外增长洞察</h1>
+    <p>实用的出海知识，帮助您做出更明智的决策</p>
   </div>
 </section>
 
-<section class="insights-page">
-  <div class="section-inner">
-    <div class="insight-grid" style="display:grid; grid-template-columns: repeat(3,1fr); gap: 30px;">
-      <a href="#" class="insight-card reveal" style="text-decoration:none; color:inherit; display:block; background:var(--white); border-radius:4px; overflow:hidden; transition:all 0.4s ease;">
-        <div class="insight-image" style="height:200px; background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80&fm=webp'); background-size:cover; background-position:center;"></div>
-        <div style="padding:28px;">
-          <span style="color:var(--gold); font-size:12px; font-weight:600; letter-spacing:2px;">市场策略</span>
-          <h3 style="font-size:18px; font-weight:600; margin:10px 0; line-height:1.5;">海外客户如何选择中国供应商？</h3>
-          <p style="font-size:14px; color:var(--text-light); line-height:1.7;">解析欧美买家的五步决策流程，帮助企业在每个环节做好准备，提高被选中概率。</p>
-        </div>
-      </a>
-      <a href="#" class="insight-card reveal" style="text-decoration:none; color:inherit; display:block; background:var(--white); border-radius:4px; overflow:hidden; transition:all 0.4s ease;">
-        <div class="insight-image" style="height:200px; background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80&fm=webp'); background-size:cover; background-position:center;"></div>
-        <div style="padding:28px;">
-          <span style="color:var(--gold); font-size:12px; font-weight:600; letter-spacing:2px;">品牌建设</span>
-          <h3 style="font-size:18px; font-weight:600; margin:10px 0; line-height:1.5;">为什么制造企业需要专业英文网站</h3>
-          <p style="font-size:14px; color:var(--text-light); line-height:1.7;">官网不仅是展示窗口，更是海外买家建立信任的第一触点。解析专业官网的六大要素。</p>
-        </div>
-      </a>
-      <a href="#" class="insight-card reveal" style="text-decoration:none; color:inherit; display:block; background:var(--white); border-radius:4px; overflow:hidden; transition:all 0.4s ease;">
-        <div class="insight-image" style="height:200px; background-image:url('https://images.unsplash.com/photo-1432888622747-4eb9a8f2c1d9?w=600&q=80&fm=webp'); background-size:cover; background-position:center;"></div>
-        <div style="padding:28px;">
-          <span style="color:var(--gold); font-size:12px; font-weight:600; letter-spacing:2px;">渠道运营</span>
-          <h3 style="font-size:18px; font-weight:600; margin:10px 0; line-height:1.5;">LinkedIn如何帮助制造企业开发海外客户</h3>
-          <p style="font-size:14px; color:var(--text-light); line-height:1.7;">B2B决策者的聚集地，内容营销建立行业权威的最佳平台。实操指南与案例分享。</p>
-        </div>
-      </a>
-      <a href="#" class="insight-card reveal" style="text-decoration:none; color:inherit; display:block; background:var(--white); border-radius:4px; overflow:hidden; transition:all 0.4s ease;">
-        <div class="insight-image" style="height:200px; background-image:url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&q=80&fm=webp'); background-size:cover; background-position:center;"></div>
-        <div style="padding:28px;">
-          <span style="color:var(--gold); font-size:12px; font-weight:600; letter-spacing:2px;">内容营销</span>
-          <h3 style="font-size:18px; font-weight:600; margin:10px 0; line-height:1.5;">工厂实拍视频：最被低估的信任建立工具</h3>
-          <p style="font-size:14px; color:var(--text-light); line-height:1.7;">一段3分钟的工厂视频，胜过100页产品手册。如何拍摄让海外买家信服的工厂视频。</p>
-        </div>
-      </a>
-      <a href="#" class="insight-card reveal" style="text-decoration:none; color:inherit; display:block; background:var(--white); border-radius:4px; overflow:hidden; transition:all 0.4s ease;">
-        <div class="insight-image" style="height:200px; background-image:url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80&fm=webp'); background-size:cover; background-position:center;"></div>
-        <div style="padding:28px;">
-          <span style="color:var(--gold); font-size:12px; font-weight:600; letter-spacing:2px;">SEO优化</span>
-          <h3 style="font-size:18px; font-weight:600; margin:10px 0; line-height:1.5;">制造业SEO：让海外买家主动找到您</h3>
-          <p style="font-size:14px; color:var(--text-light); line-height:1.7;">工业品关键词策略与内容布局，从0到1建立自然搜索流量体系。</p>
-        </div>
-      </a>
-      <a href="#" class="insight-card reveal" style="text-decoration:none; color:inherit; display:block; background:var(--white); border-radius:4px; overflow:hidden; transition:all 0.4s ease;">
-        <div class="insight-image" style="height:200px; background-image:url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&q=80&fm=webp'); background-size:cover; background-position:center;"></div>
-        <div style="padding:28px;">
-          <span style="color:var(--gold); font-size:12px; font-weight:600; letter-spacing:2px;">展会策略</span>
-          <h3 style="font-size:18px; font-weight:600; margin:10px 0; line-height:1.5;">海外展会：从参展到获客的完整攻略</h3>
-          <p style="font-size:14px; color:var(--text-light); line-height:1.7;">展前准备、展中执行、展后跟进的系统化方法，最大化展会投入产出比。</p>
-        </div>
-      </a>
+<!-- INSIGHTS LIST -->
+<section class="section">
+  <div class="insights-grid">
+    <div class="insight-card reveal reveal-delay-1">
+      <div class="insight-tag">市场策略</div>
+      <h3>海外客户如何选择中国供应商？</h3>
+      <p>了解海外采购商的决策流程和关注点，帮助您在他们搜索时脱颖而出，建立初步信任。本文深入分析B2B采购的5个关键阶段。</p>
+      <div class="insight-date">2026年8月</div>
+      <a href="#" class="read-more" style="opacity:0.5;cursor:not-allowed;">即将发布</a>
+    </div>
+    <div class="insight-card reveal reveal-delay-2">
+      <div class="insight-tag">品牌建设</div>
+      <h3>为什么制造企业需要专业英文网站？</h3>
+      <p>一个专业的英文官网不仅是展示窗口，更是建立国际信任的基础。本文分析官网对B2B采购决策的影响，以及制造业官网的必备要素。</p>
+      <div class="insight-date">2026年8月</div>
+      <a href="#" class="read-more" style="opacity:0.5;cursor:not-allowed;">即将发布</a>
+    </div>
+    <div class="insight-card reveal reveal-delay-3">
+      <div class="insight-tag">渠道运营</div>
+      <h3>LinkedIn如何帮助企业开发海外市场？</h3>
+      <p>LinkedIn是B2B出海最有效的社交平台之一。本文分享制造业LinkedIn运营的核心策略、内容规划方法和客户开发技巧。</p>
+      <div class="insight-date">2026年8月</div>
+      <a href="#" class="read-more" style="opacity:0.5;cursor:not-allowed;">即将发布</a>
+    </div>
+    <div class="insight-card reveal reveal-delay-1">
+      <div class="insight-tag">内容营销</div>
+      <h3>工厂视频如何提升采购信任？</h3>
+      <p>实拍工厂视频是最有效的信任建立工具。本文分享拍摄要点、内容结构、发布策略和效果衡量方法。</p>
+      <div class="insight-date">2026年8月</div>
+      <a href="#" class="read-more" style="opacity:0.5;cursor:not-allowed;">即将发布</a>
+    </div>
+    <div class="insight-card reveal reveal-delay-2">
+      <div class="insight-tag">SEO优化</div>
+      <h3>制造企业SEO：从0到1的搜索优化指南</h3>
+      <p>让海外客户在Google搜索时找到您。本文详解制造业SEO的关键词策略、技术优化和内容规划。</p>
+      <div class="insight-date">2026年8月</div>
+      <a href="#" class="read-more" style="opacity:0.5;cursor:not-allowed;">即将发布</a>
+    </div>
+    <div class="insight-card reveal reveal-delay-3">
+      <div class="insight-tag">案例分析</div>
+      <h3>中小制造企业出海：常见误区与避坑指南</h3>
+      <p>总结我们服务过的50+制造企业的出海经验，提炼最常见的5个误区和对应的解决方案。</p>
+      <div class="insight-date">2026年8月</div>
+      <a href="#" class="read-more" style="opacity:0.5;cursor:not-allowed;">即将发布</a>
     </div>
   </div>
 </section>
 
-<!-- ===== Footer ===== -->
+<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <div style="display:flex; align-items:center; gap:14px; margin-bottom:20px;">
-        <picture>
-          <source srcset="images/logo-white.webp" type="image/webp">
-          <img src="images/logo-white.png" alt="陈桥咨询" style="height:44px;" onerror="this.style.display='none'">
-        </picture>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+        <img src="images/logo-chenbridge.jpg" alt="陈桥咨询" style="height:44px;filter:brightness(0) invert(1);">
         <div>
-          <div style="font-size:20px; font-weight:700; color:#fff; letter-spacing:2px;">陈桥咨询</div>
-          <div style="font-size:11px; color:var(--gold); letter-spacing:3px; margin-top:2px;">CHENBRIDGE STUDIO</div>
+          <div style="font-size:20px;font-weight:600;color:#fff;">陈桥咨询</div>
+          <div style="font-size:11px;color:var(--accent);letter-spacing:2px;">CHENBRIDGE STUDIO</div>
         </div>
       </div>
-      <p>专注于帮助中国制造企业建立海外品牌、拓展国际市场。从品牌基础建设到数字渠道运营，提供全链路出海咨询服务。</p>
+      <p>中国制造企业海外增长顾问。帮助制造企业建立海外品牌形象，连接全球市场。</p>
+      <div class="footer-social">
+        <a href="#" aria-label="微信">微</a>
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="邮箱">@</a>
+      </div>
     </div>
     <div class="footer-col">
       <h4>服务</h4>
@@ -157,10 +125,11 @@
       <h4>联系</h4>
       <a href="mailto:contact@chenbridge.com">contact@chenbridge.com</a>
       <a href="contact.html">上海市</a>
+      <a href="contact.html">微信：ChenBridge</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 陈桥咨询 ChenBridge Studio. 保留所有权利。</span>
+    <span>© 2026 陈桥咨询 ChenBridge Studio.</span>
     <span>中国制造企业海外增长顾问</span>
   </div>
 </footer>

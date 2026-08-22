@@ -3,147 +3,123 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>成功案例 — 陈桥咨询</title>
-<meta name="description" content="查看陈桥咨询帮助中国制造企业成功出海的真实案例。从精密制造到工业包装，覆盖多个细分领域。">
-<link rel="canonical" href="https://chenbridge.com/cases.html">
-<meta property="og:title" content="成功案例">
-<meta property="og:description" content="查看陈桥咨询帮助中国制造企业成功出海的真实案例。从精密制造到工业包装，覆盖多个细分领域。">
+<title>案例 — 陈桥咨询 ChenBridge Studio</title>
+<meta name="description" content="陈桥咨询帮助制造企业通过英文官网、LinkedIn运营、企业视频等方式成功拓展海外市场。查看真实案例。">
+<link rel="canonical" href="https://chenbridge.com/">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
-<style>
-.page-hero { 
-  background: var(--green); 
-  padding: 160px 40px 80px; 
-  text-align:center; 
-  position:relative;
-  overflow:hidden;
-}
-.page-hero::before {
-  content:''; position:absolute; top:0; left:0; right:0; bottom:0;
-  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-}
-.page-hero-content { position:relative; z-index:1; max-width: 800px; margin:0 auto; }
-.page-hero h1 { font-size: 42px; font-weight: 700; color: #fff; margin-bottom: 16px; }
-.page-hero p { font-size: 18px; color: rgba(255,255,255,0.7); }
-.page-section { padding: 100px 40px; background: var(--cream); }
-.page-section.alt { background: var(--white); }
-</style>
 </head>
-<body>
-<!-- ===== 全屏Logo开场动画 ===== -->
-<div class="splash-screen" id="splash">
-  <picture>
-    <source srcset="images/logo-chenbridge.webp" type="image/webp">
-    <img src="images/logo-chenbridge.jpg" alt="陈桥咨询" class="splash-logo" id="splash-logo">
-  </picture>
-  <div class="splash-line"></div>
-  <p class="splash-text">帮助中国制造企业走向全球市场</p>
-</div>
-
-<!-- ===== 顶部导航 ===== -->
-<header class="header scrolled" id="header">
+<body><!-- HEADER -->
+<header class="header" id="header">
   <div class="header-inner">
     <a href="index.html" class="logo">
-      <picture>
-        <source srcset="images/logo-chenbridge.webp" type="image/webp">
-        <img src="images/logo-chenbridge.jpg" alt="陈桥咨询">
-      </picture>
-      <div class="logo-text">陈桥咨询<span>CHENBRIDGE STUDIO</span></div>
+      <img src="images/logo-chenbridge.jpg" alt="陈桥咨询">
+      <div class="logo-text">
+        陈桥咨询
+        <span>CHENBRIDGE STUDIO</span>
+      </div>
     </a>
-    <nav class="nav">
-      <a href="index.html">首页</a>
-      <a href="services.html">服务</a>
-      <a href="about.html">关于</a>
-      <a href="resources.html">资源</a>
-      <a href="cases.html" style="color:#fff;">案例</a>
+    <nav class="nav" id="main-nav">
+      <a href="index.html">首页</a><a href="services.html">服务</a><a href="about.html">关于</a><a href="insights.html">洞察</a><a href="resources.html">资源</a><a href="cases.html" class="active">案例</a>
     </nav>
-    <a href="contact.html" class="btn-primary btn-small"><span>获取方案</span></a>
+    <a href="contact.html" class="btn-primary btn-small" style="margin-left:20px;">获取方案</a>
+    <button class="mobile-toggle" id="mobile-toggle" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
+<!-- PAGE HERO -->
 <section class="page-hero">
+  <canvas class="page-hero-canvas" id="hero-canvas"></canvas>
   <div class="page-hero-content">
-    <span class="section-label" style="color:var(--gold); margin-bottom:16px; display:inline-block;">成功案例</span>
-    <h1>客户成功案例</h1>
+    <h1>成功案例</h1>
+    <p>真实的企业转型故事，从默默无闻到被全球客户看见</p>
   </div>
 </section>
 
-
-<section class="page-section">
-  <div class="section-inner">
-    <div class="case-grid" style="display:grid; grid-template-columns: repeat(2,1fr); gap: 30px;">
-      <div class="case-card reveal">
-        <div class="case-image" style="background-image:url('https://images.unsplash.com/photo-1565043666747-69f6646db940?w=800&q=80&fm=webp');">
-          <span class="case-tag">精密制造</span>
+<!-- CASES -->
+<section class="section">
+  <div class="cases-grid">
+    <div class="case-card reveal reveal-delay-1">
+      <div class="case-header"><h3>精密零部件制造企业</h3></div>
+      <div class="case-body">
+        <div class="case-before">
+          <h4>问题</h4>
+          <ul><li>没有英文官网</li><li>产品信息仅中文</li><li>海外客户无法搜索到</li><li>完全依赖展会获客</li></ul>
         </div>
-        <div class="case-body">
-          <h3>某精密零部件制造商</h3>
-          <p>原有英文官网仅为中文翻译，无工厂实拍，海外询盘几乎为零。重建品牌体系后，3个月内LinkedIn询盘增长300%，成功开拓德国、美国市场。</p>
-          <div class="case-meta">
-            <span class="case-meta-item"><strong>300%</strong> 询盘增长</span>
-            <span class="case-meta-item"><strong>12</strong> 个国家客户</span>
-          </div>
+        <div class="case-after">
+          <h4>解决方案</h4>
+          <ul><li>专业英文官网上线</li><li>完整产品技术资料</li><li>Google自然搜索获客</li><li>LinkedIn内容运营</li></ul>
         </div>
       </div>
-      <div class="case-card reveal">
-        <div class="case-image" style="background-image:url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80&fm=webp');">
-          <span class="case-tag">工业包装</span>
+      <div class="case-result"><p>成果：<strong>3个月内获得12个海外询盘</strong>，其中2个进入样品测试阶段</p></div>
+    </div>
+    <div class="case-card reveal reveal-delay-2">
+      <div class="case-header"><h3>工业包装解决方案企业</h3></div>
+      <div class="case-body">
+        <div class="case-before">
+          <h4>问题</h4>
+          <ul><li>网站停留在2018年</li><li>无工厂实拍视频</li><li>客户质疑生产能力</li><li>报价后无下文</li></ul>
         </div>
-        <div class="case-body">
-          <h3>某工业包装解决方案商</h3>
-          <p>长期依赖展会获客，疫情后渠道断裂。通过数字化渠道建设，6个月内建立稳定的线上获客体系，月均新增15个有效询盘，客户遍布东南亚。</p>
-          <div class="case-meta">
-            <span class="case-meta-item"><strong>15+</strong> 月均询盘</span>
-            <span class="case-meta-item"><strong>6</strong> 个月周期</span>
-          </div>
-        </div>
-      </div>
-      <div class="case-card reveal">
-        <div class="case-image" style="background-image:url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&q=80&fm=webp');">
-          <span class="case-tag">机械设备</span>
-        </div>
-        <div class="case-body">
-          <h3>某自动化设备制造商</h3>
-          <p>拥有核心技术但海外知名度低。通过工厂实拍视频+LinkedIn内容运营，6个月内获得多个欧洲大客户询盘，单笔订单金额突破50万美元。</p>
-          <div class="case-meta">
-            <span class="case-meta-item"><strong>$50万+</strong> 单笔订单</span>
-            <span class="case-meta-item"><strong>8</strong> 个月周期</span>
-          </div>
+        <div class="case-after">
+          <h4>解决方案</h4>
+          <ul><li>全新品牌官网</li><li>工厂实拍+解说视频</li><li>ISO认证可视化展示</li><li>持续内容更新</li></ul>
         </div>
       </div>
-      <div class="case-card reveal">
-        <div class="case-image" style="background-image:url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80&fm=webp');">
-          <span class="case-tag">新能源</span>
+      <div class="case-result"><p>成果：<strong>客户转化率提升40%</strong>，平均成交周期缩短30%</p></div>
+    </div>
+    <div class="case-card reveal reveal-delay-1">
+      <div class="case-header"><h3>机械设备出口企业</h3></div>
+      <div class="case-body">
+        <div class="case-before">
+          <h4>问题</h4>
+          <ul><li>缺少英文技术文档</li><li>无海外社交媒体</li><li>品牌认知度低</li><li>客户来源单一</li></ul>
         </div>
-        <div class="case-body">
-          <h3>某光伏组件制造商</h3>
-          <p>产品优质但缺乏海外品牌认知。重建英文官网+SEO优化后，自然搜索流量增长400%，来自欧洲和拉美的高质量询盘持续增加。</p>
-          <div class="case-meta">
-            <span class="case-meta-item"><strong>400%</strong> 流量增长</span>
-            <span class="case-meta-item"><strong>10+</strong> 覆盖市场</span>
-          </div>
+        <div class="case-after">
+          <h4>解决方案</h4>
+          <ul><li>技术文档英文化</li><li>LinkedIn企业主页</li><li>YouTube产品视频</li><li>多渠道获客体系</li></ul>
         </div>
       </div>
+      <div class="case-result"><p>成果：<strong>6个月内新增8个海外客户</strong>，覆盖欧洲和东南亚市场</p></div>
+    </div>
+    <div class="case-card reveal reveal-delay-2">
+      <div class="case-header"><h3>新能源零部件供应商</h3></div>
+      <div class="case-body">
+        <div class="case-before">
+          <h4>问题</h4>
+          <ul><li>行业认证未展示</li><li>无案例客户背书</li><li>网站加载速度慢</li><li>移动端体验差</li></ul>
+        </div>
+        <div class="case-after">
+          <h4>解决方案</h4>
+          <ul><li>认证体系可视化</li><li>成功案例展示</li><li>网站性能优化</li><li>响应式设计</li></ul>
+        </div>
+      </div>
+      <div class="case-result"><p>成果：<strong>网站跳出率降低55%</strong>，平均停留时间提升3倍</p></div>
     </div>
   </div>
 </section>
 
-
-<!-- ===== Footer ===== -->
+<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <div style="display:flex; align-items:center; gap:14px; margin-bottom:20px;">
-        <picture>
-          <source srcset="images/logo-white.webp" type="image/webp">
-          <img src="images/logo-white.png" alt="陈桥咨询" style="height:44px;" onerror="this.style.display='none'">
-        </picture>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+        <img src="images/logo-chenbridge.jpg" alt="陈桥咨询" style="height:44px;filter:brightness(0) invert(1);">
         <div>
-          <div style="font-size:20px; font-weight:700; color:#fff; letter-spacing:2px;">陈桥咨询</div>
-          <div style="font-size:11px; color:var(--gold); letter-spacing:3px; margin-top:2px;">CHENBRIDGE STUDIO</div>
+          <div style="font-size:20px;font-weight:600;color:#fff;">陈桥咨询</div>
+          <div style="font-size:11px;color:var(--accent);letter-spacing:2px;">CHENBRIDGE STUDIO</div>
         </div>
       </div>
-      <p>专注于帮助中国制造企业建立海外品牌、拓展国际市场。从品牌基础建设到数字渠道运营，提供全链路出海咨询服务。</p>
+      <p>中国制造企业海外增长顾问。帮助制造企业建立海外品牌形象，连接全球市场。</p>
+      <div class="footer-social">
+        <a href="#" aria-label="微信">微</a>
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="邮箱">@</a>
+      </div>
     </div>
     <div class="footer-col">
       <h4>服务</h4>
@@ -163,10 +139,11 @@
       <h4>联系</h4>
       <a href="mailto:contact@chenbridge.com">contact@chenbridge.com</a>
       <a href="contact.html">上海市</a>
+      <a href="contact.html">微信：ChenBridge</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 陈桥咨询 ChenBridge Studio. 保留所有权利。</span>
+    <span>© 2026 陈桥咨询 ChenBridge Studio.</span>
     <span>中国制造企业海外增长顾问</span>
   </div>
 </footer>
