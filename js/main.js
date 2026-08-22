@@ -295,7 +295,91 @@ function initSphere(canvasId){
   draw();
 }
 
-initSphere('hero-canvas');
+function initGlobalNetwork(canvasId){
+  const canvas=document.getElementById(canvasId);
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  let width,height,time=0,mouseX=-9999,mouseY=-9999;
+  const nodes=[
+    [0.08,0.45],[0.17,0.30],[0.22,0.63],[0.34,0.40],[0.40,0.70],
+    [0.51,0.28],[0.56,0.55],[0.66,0.37],[0.72,0.68],[0.83,0.30],
+    [0.91,0.52],[0.77,0.50],[0.30,0.20],[0.46,0.48]
+  ];
+  const routes=[[0,1],[1,3],[3,5],[5,7],[7,9],[9,10],[2,4],[4,6],[6,8],[8,11],[3,13],[13,6],[5,6],[7,11]];
+  const stars=[];
+  for(let starIndex=0;starIndex<72;starIndex++){
+    stars.push({x:(starIndex*47%101)/100,y:(starIndex*29%97)/96,size:0.5+(starIndex%4)*0.35,phase:starIndex*0.8});
+  }
+
+  function resize(){width=canvas.width=canvas.offsetWidth;height=canvas.height=canvas.offsetHeight;}
+  resize();
+  window.addEventListener('resize',resize);
+  canvas.addEventListener('mousemove',function(e){const rect=canvas.getBoundingClientRect();mouseX=e.clientX-rect.left;mouseY=e.clientY-rect.top;});
+  canvas.addEventListener('mouseleave',function(){mouseX=-9999;mouseY=-9999;});
+
+  function point(node){return{x:width*(width<768?0.5+(node[0]-0.5)*0.95:0.18+node[0]*0.8),y:height*(0.18+node[1]*0.64)};}
+  function draw(){
+    time+=0.016;
+    const centerX=width*(width<768?0.5:0.72),centerY=height*0.5;
+    const grad=ctx.createRadialGradient(centerX,centerY,0,centerX,centerY,Math.max(width,height));
+    grad.addColorStop(0,'#1A6670');grad.addColorStop(0.48,'#123B43');grad.addColorStop(1,'#061B22');
+    ctx.fillStyle=grad;ctx.fillRect(0,0,width,height);
+
+    // Layered atmosphere gives the network a deeper sense of distance.
+    const glow=ctx.createRadialGradient(width*0.78,height*0.45,0,width*0.78,height*0.45,width*0.55);
+    glow.addColorStop(0,'rgba(108,218,195,0.13)');glow.addColorStop(0.45,'rgba(28,102,112,0.07)');glow.addColorStop(1,'rgba(6,27,34,0)');
+    ctx.fillStyle=glow;ctx.fillRect(0,0,width,height);
+    stars.forEach(function(star){
+      const twinkle=0.25+0.35*(0.5+0.5*Math.sin(time*1.3+star.phase));
+      ctx.beginPath();ctx.arc(width*star.x,height*star.y,star.size,0,Math.PI*2);
+      ctx.fillStyle='rgba(211,235,226,'+twinkle+')';ctx.fill();
+    });
+
+    ctx.save();
+    ctx.translate(width*0.73,height*0.5);ctx.rotate(-0.12+Math.sin(time*0.18)*0.04);
+    const beam=ctx.createLinearGradient(-width*0.42,0,width*0.42,0);
+    beam.addColorStop(0,'rgba(108,218,195,0)');beam.addColorStop(0.5,'rgba(108,218,195,0.08)');beam.addColorStop(1,'rgba(108,218,195,0)');
+    ctx.fillStyle=beam;ctx.fillRect(-width*0.5,-height*0.015,width,height*0.03);ctx.restore();
+
+    // Faint latitude bands create a global coordinate field without a globe.
+    for(let band=0;band<5;band++){
+      const y=height*(0.16+band*0.17);
+      ctx.beginPath();ctx.moveTo(width*0.12,y);
+      ctx.bezierCurveTo(width*0.38,y-22,width*0.62,y+22,width*0.92,y);
+      ctx.strokeStyle='rgba(185,236,220,0.11)';ctx.lineWidth=1;ctx.stroke();
+    }
+    for(let meridian=0;meridian<4;meridian++){
+      const x=width*(0.42+meridian*0.12)+Math.sin(time*0.3+meridian)*12;
+      ctx.beginPath();ctx.moveTo(x,height*0.16);ctx.bezierCurveTo(x-55,height*0.38,x+55,height*0.62,x,height*0.84);
+      ctx.strokeStyle='rgba(185,236,220,0.08)';ctx.lineWidth=1;ctx.stroke();
+    }
+
+    routes.forEach(function(route,routeIndex){
+      const start=point(nodes[route[0]]),end=point(nodes[route[1]]);
+      const controlX=(start.x+end.x)/2,controlY=Math.min(start.y,end.y)-height*(0.08+routeIndex%3*0.035);
+      ctx.beginPath();ctx.moveTo(start.x,start.y);ctx.quadraticCurveTo(controlX,controlY,end.x,end.y);
+      ctx.strokeStyle=routeIndex%3===0?'rgba(242,185,153,0.25)':'rgba(108,218,195,0.28)';ctx.lineWidth=1.2+(routeIndex%3)*0.35;ctx.stroke();
+      const progress=(time*(0.12+routeIndex%3*0.035)+routeIndex*0.11)%1;
+      const inverse=1-progress;
+      const signalX=inverse*inverse*start.x+2*inverse*progress*controlX+progress*progress*end.x;
+      const signalY=inverse*inverse*start.y+2*inverse*progress*controlY+progress*progress*end.y;
+      ctx.beginPath();ctx.arc(signalX,signalY,2.4+Math.sin(time*5+routeIndex)*0.7,0,Math.PI*2);
+      ctx.fillStyle='rgba(242,185,153,0.95)';ctx.shadowColor='rgba(217,108,74,0.8)';ctx.shadowBlur=14;ctx.fill();ctx.shadowBlur=0;
+    });
+
+    nodes.forEach(function(node,nodeIndex){
+      const position=point(node),dx=mouseX-position.x,dy=mouseY-position.y;
+      const distance=Math.sqrt(dx*dx+dy*dy),focus=distance<150?1-distance/150:0;
+      const pulse=1+Math.sin(time*2.2+nodeIndex)*0.2;
+      ctx.beginPath();ctx.arc(position.x,position.y,(nodeIndex%4===0?5:3)*pulse+focus*3,0,Math.PI*2);
+      ctx.fillStyle='rgba(242,185,153,0.95)';ctx.shadowColor='rgba(217,108,74,0.75)';ctx.shadowBlur=10+focus*14;ctx.fill();ctx.shadowBlur=0;
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+initGlobalNetwork('hero-canvas');
 
 /* ===== HERO TEXT CAROUSEL ===== */
 const slides=document.querySelectorAll('.carousel-slide');

@@ -32,12 +32,12 @@ body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;color
 @keyframes splashLineGrow{to{width:80px;}}
 
 /* ===== HEADER - 菜单右对齐 ===== */
-.header{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:14px 0;background:rgba(11,37,44,0.42);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08);transition:all 0.4s ease;}
-.header.scrolled{background:rgba(11,37,44,0.94);padding:10px 0;box-shadow:0 4px 30px rgba(11,37,44,0.2);}
+.header{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:8px 0;background:rgba(11,37,44,0.42);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08);transition:all 0.4s ease;}
+.header.scrolled{background:rgba(11,37,44,0.94);padding:6px 0;box-shadow:0 4px 30px rgba(11,37,44,0.2);}
 .header-inner{max-width:1280px;margin:0 auto;padding:0 40px;display:flex;justify-content:space-between;align-items:center;}
 .logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0;}
-.logo img{height:68px;width:auto;display:block;transition:all 0.3s ease;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.24));}
-.header.scrolled .logo img{height:60px;}
+.logo img{height:64px;width:auto;display:block;transition:all 0.3s ease;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.24));}
+.header.scrolled .logo img{height:58px;}
 .nav{display:flex;align-items:center;gap:36px;margin-left:auto;}
 .nav a{color:rgba(255,255,255,0.8);text-decoration:none;font-size:14px;font-weight:400;transition:all 0.3s;position:relative;letter-spacing:0.5px;}
 .nav a::after{content:'';position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);width:0;height:2px;background:var(--accent);transition:width 0.3s;}
