@@ -149,9 +149,9 @@ function initSphere(canvasId){
 
     // Background gradient
     const grad=ctx.createRadialGradient(centerX,centerY,0,centerX,centerY,Math.max(width,height));
-    grad.addColorStop(0,'#1A6670');
-    grad.addColorStop(0.5,'#123B43');
-    grad.addColorStop(1,'#061B22');
+    grad.addColorStop(0,'#0F3D2E');
+    grad.addColorStop(0.5,'#0A2B20');
+    grad.addColorStop(1,'#051a12');
     ctx.fillStyle=grad;
     ctx.fillRect(0,0,width,height);
 
@@ -219,7 +219,7 @@ function initSphere(canvasId){
           ctx.beginPath();
           ctx.moveTo(p1.sx,p1.sy);
           ctx.lineTo(p2.sx,p2.sy);
-          ctx.strokeStyle='rgba(229,138,104,'+opacity+')';
+          ctx.strokeStyle='rgba(176,141,87,'+opacity+')';
           ctx.lineWidth=0.6*p1.scale;
           ctx.stroke();
         }
@@ -247,23 +247,23 @@ function initSphere(canvasId){
       if(p.isBig||glow>0.1){
         ctx.beginPath();
         ctx.arc(p.sx,p.sy,r*(p.isBig?6:4),0,Math.PI*2);
-        ctx.fillStyle='rgba(229,138,104,'+(0.06+glow*0.15)+')';
+        ctx.fillStyle='rgba(176,141,87,'+(0.06+glow*0.15)+')';
         ctx.fill();
       }
 
       // Middle glow
       ctx.beginPath();
       ctx.arc(p.sx,p.sy,r*2.5,0,Math.PI*2);
-      ctx.fillStyle='rgba(185,236,220,'+(0.1+glow*0.2)+')';
+      ctx.fillStyle='rgba(200,180,140,'+(0.1+glow*0.2)+')';
       ctx.fill();
 
       // Core dot
       ctx.beginPath();
       ctx.arc(p.sx,p.sy,r,0,Math.PI*2);
       if(p.isBig){
-        ctx.fillStyle='rgba(255,241,229,'+Math.min(1,alpha+glow)+')';
+        ctx.fillStyle='rgba(255,245,220,'+Math.min(1,alpha+glow)+')';
       }else{
-        ctx.fillStyle='rgba(211,235,226,'+Math.min(1,alpha*0.8+glow*0.6)+')';
+        ctx.fillStyle='rgba(220,210,190,'+Math.min(1,alpha*0.8+glow*0.6)+')';
       }
       ctx.fill();
 
@@ -286,7 +286,7 @@ function initSphere(canvasId){
       const aR=0.8+0.5*Math.sin(time*2+i);
       ctx.beginPath();
       ctx.arc(ax,ay,aR,0,Math.PI*2);
-      ctx.fillStyle='rgba(229,138,104,0.12)';
+      ctx.fillStyle='rgba(176,141,87,0.12)';
       ctx.fill();
     }
 
