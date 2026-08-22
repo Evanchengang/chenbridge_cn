@@ -156,9 +156,9 @@ function initSphere(canvasId){
 
     // Background gradient
     const grad=ctx.createRadialGradient(centerX,centerY,0,centerX,centerY,Math.max(width,height));
-    grad.addColorStop(0,'#1A6670');
-    grad.addColorStop(0.5,'#123B43');
-    grad.addColorStop(1,'#061B22');
+    grad.addColorStop(0,'#1F5A43');
+    grad.addColorStop(0.5,'#0F3D2E');
+    grad.addColorStop(1,'#0A2B20');
     ctx.fillStyle=grad;
     ctx.fillRect(0,0,width,height);
 
@@ -180,14 +180,14 @@ function initSphere(canvasId){
       ctx.beginPath();
       ctx.moveTo(routeStartX,routeStartY);
       ctx.quadraticCurveTo(routeCenterX,routeCenterY-routeLift,routeEndX,routeEndY);
-      ctx.strokeStyle='rgba(108,218,195,0.14)';
+      ctx.strokeStyle='rgba(242,140,40,0.14)';
       ctx.lineWidth=1;
       ctx.stroke();
 
       ctx.beginPath();
       ctx.arc(signalX,signalY,2.2+Math.sin(time*4+routeIndex)*0.8,0,Math.PI*2);
-      ctx.fillStyle='rgba(242,185,153,0.9)';
-      ctx.shadowColor='rgba(217,108,74,0.8)';
+      ctx.fillStyle='rgba(255,248,235,0.9)';
+      ctx.shadowColor='rgba(242,140,40,0.8)';
       ctx.shadowBlur=12;
       ctx.fill();
       ctx.shadowBlur=0;
@@ -195,7 +195,7 @@ function initSphere(canvasId){
 
     ctx.beginPath();
     ctx.ellipse(routeCenterX,routeCenterY,routeRadius*1.12,routeRadius*0.34,rotationY*0.2,0,Math.PI*2);
-    ctx.strokeStyle='rgba(185,236,220,0.16)';
+    ctx.strokeStyle='rgba(255,255,255,0.16)';
     ctx.lineWidth=1;
     ctx.stroke();
 
@@ -226,7 +226,7 @@ function initSphere(canvasId){
           ctx.beginPath();
           ctx.moveTo(p1.sx,p1.sy);
           ctx.lineTo(p2.sx,p2.sy);
-          ctx.strokeStyle='rgba(229,138,104,'+opacity+')';
+          ctx.strokeStyle='rgba(242,140,40,'+opacity+')';
           ctx.lineWidth=0.6*p1.scale;
           ctx.stroke();
         }
@@ -254,23 +254,23 @@ function initSphere(canvasId){
       if(p.isBig||glow>0.1){
         ctx.beginPath();
         ctx.arc(p.sx,p.sy,r*(p.isBig?6:4),0,Math.PI*2);
-        ctx.fillStyle='rgba(229,138,104,'+(0.06+glow*0.15)+')';
+        ctx.fillStyle='rgba(242,140,40,'+(0.06+glow*0.15)+')';
         ctx.fill();
       }
 
       // Middle glow
       ctx.beginPath();
       ctx.arc(p.sx,p.sy,r*2.5,0,Math.PI*2);
-      ctx.fillStyle='rgba(185,236,220,'+(0.1+glow*0.2)+')';
+      ctx.fillStyle='rgba(242,140,40,'+(0.1+glow*0.2)+')';
       ctx.fill();
 
       // Core dot
       ctx.beginPath();
       ctx.arc(p.sx,p.sy,r,0,Math.PI*2);
       if(p.isBig){
-        ctx.fillStyle='rgba(255,241,229,'+Math.min(1,alpha+glow)+')';
+        ctx.fillStyle='rgba(255,248,235,'+Math.min(1,alpha+glow)+')';
       }else{
-        ctx.fillStyle='rgba(211,235,226,'+Math.min(1,alpha*0.8+glow*0.6)+')';
+        ctx.fillStyle='rgba(229,231,235,'+Math.min(1,alpha*0.8+glow*0.6)+')';
       }
       ctx.fill();
 
@@ -293,7 +293,7 @@ function initSphere(canvasId){
       const aR=0.8+0.5*Math.sin(time*2+i);
       ctx.beginPath();
       ctx.arc(ax,ay,aR,0,Math.PI*2);
-      ctx.fillStyle='rgba(229,138,104,0.12)';
+      ctx.fillStyle='rgba(242,140,40,0.12)';
       ctx.fill();
     }
 
@@ -329,23 +329,23 @@ function initGlobalNetwork(canvasId){
     time+=0.016;
     const centerX=width*(width<768?0.5:0.72),centerY=height*0.5;
     const grad=ctx.createRadialGradient(centerX,centerY,0,centerX,centerY,Math.max(width,height));
-    grad.addColorStop(0,'#1A6670');grad.addColorStop(0.48,'#123B43');grad.addColorStop(1,'#061B22');
+    grad.addColorStop(0,'#1F5A43');grad.addColorStop(0.48,'#0F3D2E');grad.addColorStop(1,'#0A2B20');
     ctx.fillStyle=grad;ctx.fillRect(0,0,width,height);
 
     // Layered atmosphere gives the network a deeper sense of distance.
     const glow=ctx.createRadialGradient(width*0.78,height*0.45,0,width*0.78,height*0.45,width*0.55);
-    glow.addColorStop(0,'rgba(108,218,195,0.13)');glow.addColorStop(0.45,'rgba(28,102,112,0.07)');glow.addColorStop(1,'rgba(6,27,34,0)');
+    glow.addColorStop(0,'rgba(242,140,40,0.13)');glow.addColorStop(0.45,'rgba(31,90,67,0.07)');glow.addColorStop(1,'rgba(10,43,32,0)');
     ctx.fillStyle=glow;ctx.fillRect(0,0,width,height);
     stars.forEach(function(star){
       const twinkle=0.25+0.35*(0.5+0.5*Math.sin(time*1.3+star.phase));
       ctx.beginPath();ctx.arc(width*star.x,height*star.y,star.size,0,Math.PI*2);
-      ctx.fillStyle='rgba(211,235,226,'+twinkle+')';ctx.fill();
+      ctx.fillStyle='rgba(255,255,255,'+twinkle+')';ctx.fill();
     });
 
     ctx.save();
     ctx.translate(width*0.73,height*0.5);ctx.rotate(-0.12+Math.sin(time*0.18)*0.04);
     const beam=ctx.createLinearGradient(-width*0.42,0,width*0.42,0);
-    beam.addColorStop(0,'rgba(108,218,195,0)');beam.addColorStop(0.5,'rgba(108,218,195,0.08)');beam.addColorStop(1,'rgba(108,218,195,0)');
+    beam.addColorStop(0,'rgba(242,140,40,0)');beam.addColorStop(0.5,'rgba(242,140,40,0.08)');beam.addColorStop(1,'rgba(242,140,40,0)');
     ctx.fillStyle=beam;ctx.fillRect(-width*0.5,-height*0.015,width,height*0.03);ctx.restore();
 
     // Faint latitude bands create a global coordinate field without a globe.
@@ -353,25 +353,25 @@ function initGlobalNetwork(canvasId){
       const y=height*(0.16+band*0.17);
       ctx.beginPath();ctx.moveTo(width*0.12,y);
       ctx.bezierCurveTo(width*0.38,y-22,width*0.62,y+22,width*0.92,y);
-      ctx.strokeStyle='rgba(185,236,220,0.11)';ctx.lineWidth=1;ctx.stroke();
+      ctx.strokeStyle='rgba(255,255,255,0.11)';ctx.lineWidth=1;ctx.stroke();
     }
     for(let meridian=0;meridian<4;meridian++){
       const x=width*(0.42+meridian*0.12)+Math.sin(time*0.3+meridian)*12;
       ctx.beginPath();ctx.moveTo(x,height*0.16);ctx.bezierCurveTo(x-55,height*0.38,x+55,height*0.62,x,height*0.84);
-      ctx.strokeStyle='rgba(185,236,220,0.08)';ctx.lineWidth=1;ctx.stroke();
+      ctx.strokeStyle='rgba(255,255,255,0.08)';ctx.lineWidth=1;ctx.stroke();
     }
 
     routes.forEach(function(route,routeIndex){
       const start=point(nodes[route[0]]),end=point(nodes[route[1]]);
       const controlX=(start.x+end.x)/2,controlY=Math.min(start.y,end.y)-height*(0.08+routeIndex%3*0.035);
       ctx.beginPath();ctx.moveTo(start.x,start.y);ctx.quadraticCurveTo(controlX,controlY,end.x,end.y);
-      ctx.strokeStyle=routeIndex%3===0?'rgba(242,185,153,0.25)':'rgba(108,218,195,0.28)';ctx.lineWidth=1.2+(routeIndex%3)*0.35;ctx.stroke();
+      ctx.strokeStyle=routeIndex%3===0?'rgba(242,140,40,0.25)':'rgba(255,255,255,0.28)';ctx.lineWidth=1.2+(routeIndex%3)*0.35;ctx.stroke();
       const progress=(time*(0.12+routeIndex%3*0.035)+routeIndex*0.11)%1;
       const inverse=1-progress;
       const signalX=inverse*inverse*start.x+2*inverse*progress*controlX+progress*progress*end.x;
       const signalY=inverse*inverse*start.y+2*inverse*progress*controlY+progress*progress*end.y;
       ctx.beginPath();ctx.arc(signalX,signalY,2.4+Math.sin(time*5+routeIndex)*0.7,0,Math.PI*2);
-      ctx.fillStyle='rgba(242,185,153,0.95)';ctx.shadowColor='rgba(217,108,74,0.8)';ctx.shadowBlur=14;ctx.fill();ctx.shadowBlur=0;
+      ctx.fillStyle='rgba(255,248,235,0.95)';ctx.shadowColor='rgba(242,140,40,0.8)';ctx.shadowBlur=14;ctx.fill();ctx.shadowBlur=0;
     });
 
     nodes.forEach(function(node,nodeIndex){
@@ -379,7 +379,7 @@ function initGlobalNetwork(canvasId){
       const distance=Math.sqrt(dx*dx+dy*dy),focus=distance<150?1-distance/150:0;
       const pulse=1+Math.sin(time*2.2+nodeIndex)*0.2;
       ctx.beginPath();ctx.arc(position.x,position.y,(nodeIndex%4===0?5:3)*pulse+focus*3,0,Math.PI*2);
-      ctx.fillStyle='rgba(242,185,153,0.95)';ctx.shadowColor='rgba(217,108,74,0.75)';ctx.shadowBlur=10+focus*14;ctx.fill();ctx.shadowBlur=0;
+      ctx.fillStyle='rgba(255,248,235,0.95)';ctx.shadowColor='rgba(242,140,40,0.75)';ctx.shadowBlur=10+focus*14;ctx.fill();ctx.shadowBlur=0;
     });
     requestAnimationFrame(draw);
   }
