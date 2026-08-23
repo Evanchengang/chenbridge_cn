@@ -322,3 +322,97 @@ body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;color
 .lang-switch{color:rgba(255,255,255,0.85);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:0.5px;padding:8px 14px;border:1px solid rgba(255,255,255,0.28);border-radius:var(--radius,4px);transition:all 0.3s;margin-left:12px;flex-shrink:0;}
 .lang-switch:hover{color:#fff;border-color:var(--accent,#B08D57);background:rgba(176,141,87,0.12);}
 @media(max-width:1024px){.lang-switch{margin-left:0;margin-top:8px;display:inline-block;}}
+
+/* ===== MOBILE HEADER FIX ===== */
+@media(max-width:1024px){
+  .header-inner{
+    padding:0 16px;
+    gap:10px;
+    flex-wrap:nowrap;
+  }
+  .logo{
+    min-width:0;
+    flex:1 1 auto;
+    overflow:hidden;
+  }
+  .logo img{
+    width:102px !important;
+    max-height:41px !important;
+    flex-shrink:0;
+  }
+  .logo-text{
+    font-size:10px !important;
+    letter-spacing:0.5px !important;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width:42vw;
+  }
+  /* 手机端：顶栏只留 Logo + 汉堡，避免挤掉菜单按钮 */
+  .header-inner > .btn-primary.btn-small,
+  .header-inner > .lang-switch{
+    display:none !important;
+  }
+  .nav{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    width:100%;
+    background:rgba(11,37,44,0.98);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    flex-direction:column;
+    padding:20px 24px 28px;
+    gap:4px;
+    margin-left:0;
+    z-index:1001;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .nav.open{display:flex;}
+  .nav a{
+    padding:14px 0;
+    font-size:16px;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .nav a::after{display:none;}
+  .mobile-toggle{
+    display:flex !important;
+    flex-shrink:0;
+    width:44px;
+    height:44px;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+    padding:0;
+    margin-left:auto;
+    z-index:1002;
+    position:relative;
+  }
+  .mobile-toggle span{
+    width:22px;
+    height:2px;
+    background:#fff;
+    display:block;
+  }
+  /* 展开菜单底部补：获取方案 + English */
+  .nav .mobile-extra{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-top:16px;
+    padding-top:8px;
+  }
+  .nav .mobile-extra .btn-primary{
+    text-align:center;
+    width:100%;
+  }
+  .nav .mobile-extra .lang-switch{
+    display:inline-block !important;
+    text-align:center;
+    margin:0;
+  }
+}
+@media(min-width:1025px){
+  .nav .mobile-extra{display:none !important;}
+}
