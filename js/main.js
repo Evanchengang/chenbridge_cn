@@ -223,20 +223,29 @@ function initNightSky(canvasId){
     curve(cn, us, H * 0.04);
     curve(cn, eu, -H * 0.02);
 
-    function endpoint(pt) {
+    function endpoint(pt, isChina) {
+      const pulse = isChina ? (0.72 + 0.28 * Math.sin(time * 2.6)) : (0.5 + fade * 0.25);
+      const glowR = isChina ? (11 + 3.5 * Math.sin(time * 2.6)) : 10;
       ctx.beginPath();
-      ctx.arc(pt.x, pt.y, 3.2, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(255,230,180,' + (0.5 + fade * 0.25) + ')';
+      ctx.arc(pt.x, pt.y, isChina ? 4.0 : 3.2, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,230,180,' + pulse + ')';
       ctx.fill();
       ctx.beginPath();
-      ctx.arc(pt.x, pt.y, 10, 0, Math.PI * 2);
-      ctx.strokeStyle = 'rgba(176,141,87,' + (fade * 0.35) + ')';
-      ctx.lineWidth = 1;
+      ctx.arc(pt.x, pt.y, glowR, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(176,141,87,' + (isChina ? (0.22 + 0.18 * Math.sin(time * 2.6)) : (fade * 0.35)) + ')';
+      ctx.lineWidth = isChina ? 1.3 : 1;
       ctx.stroke();
+      if (isChina) {
+        ctx.beginPath();
+        ctx.arc(pt.x, pt.y, glowR + 5, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(176,141,87,' + (0.07 + 0.05 * Math.sin(time * 2.6)) + ')';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
     }
-    endpoint(us);
-    endpoint(cn);
-    endpoint(eu);
+    endpoint(us, false);
+    endpoint(cn, true);
+    endpoint(eu, false);
 
     ctx.fillStyle = 'rgba(255,255,255,' + fade + ')';
     ctx.fillText('美国', us.x, us.y + 22);
